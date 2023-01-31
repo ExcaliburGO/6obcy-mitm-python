@@ -139,6 +139,7 @@ class Client:
 					while not self.msgqueue.empty():
 						self.sendMessage(self.msgqueue.get())
 				elif data["ev_name"]=="sdis":
+					self.istalk=False
 					print(self.name, "Disconnected.", flush=True)
 					if self.pairclient: self.pairclient.endTalk()
 					self.startSearch()
@@ -150,6 +151,8 @@ class Client:
 					print(self.name, ">", data["ev_data"]["msg"], flush=True)
 					if self.pairclient: self.pairclient.sendMessage(data["ev_data"]["msg"])
 				elif data["ev_name"]=="convended":
+					self.istalk=False
+					print(self.name, "Conversation ended.", flush=True)
 					pass
 				elif data["ev_name"]=="r_svmsg":
 					pass
