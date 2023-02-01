@@ -141,6 +141,7 @@ class Client:
 				elif data["ev_name"]=="sdis":
 					self.istalk=False
 					print(self.name, "Disconnected.", flush=True)
+					self.endTalk() # to clear msgqueue
 					if self.pairclient: self.pairclient.endTalk()
 					self.startSearch()
 				elif data["ev_name"]=="count":
